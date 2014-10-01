@@ -11,6 +11,9 @@ class Blog(models.Model):
     def __unicode__(self):
         return '%s' % self.title
 
+    def get_data_publicacao(self):
+        return '%s' % self.posted
+
     @permalink
     def get_absolute_url(self):
         return ('view_blog_post', None, { 'slug': self.slug })

@@ -5,8 +5,7 @@ from django.shortcuts import render_to_response, get_object_or_404
 def index(request):
     return render_to_response('index.html', {
         'categories': Category.objects.all(),
-        'posted': posted,
-        'posts': Blog.objects.all()[:5]
+        'posts': posts_publicados_no_passado()
     })
 
 def view_post(request, slug):   
@@ -20,3 +19,9 @@ def view_category(request, slug):
         'category': category,
         'posts': Blog.objects.filter(category=category)[:5]
     })
+
+def posts_publicados_no_passado():
+    posts = []
+    posts.append(get_object_or_404(Blog, pk=1))
+    #data_publicacao = post.get_data_publicacao()
+    return posts
