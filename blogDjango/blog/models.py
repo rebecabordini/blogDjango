@@ -12,7 +12,7 @@ class Blog(models.Model):
         return '%s' % self.title
 
     def get_data_publicacao(self):
-        return '%s' % self.posted
+        return self.posted
 
     @permalink
     def get_absolute_url(self):

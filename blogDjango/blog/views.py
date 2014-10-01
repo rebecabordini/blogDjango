@@ -1,5 +1,7 @@
 from blog.models import Blog, Category
 from django.shortcuts import render_to_response, get_object_or_404
+from django.utils import timezone
+import datetime
 
 
 def index(request):
@@ -22,6 +24,7 @@ def view_category(request, slug):
 
 def posts_publicados_no_passado():
     posts = []
-    posts.append(get_object_or_404(Blog, pk=1))
-    #data_publicacao = post.get_data_publicacao()
+    for post in Blog.objects.all():
+        if (post.get_data_publicacao() <= datetime.datetime.now().date()):
+            posts.append(post)
     return posts
