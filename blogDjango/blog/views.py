@@ -37,4 +37,7 @@ def posts_publicados_no_passado():
 
 def posts_publicados_no_futuro():
     posts = []
+    for post in Blog.objects.all():
+        if (post.get_data_publicacao() > datetime.datetime.now().date()):
+            posts.append(post)
     return posts
