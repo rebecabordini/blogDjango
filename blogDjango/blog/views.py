@@ -10,6 +10,12 @@ def index(request):
         'posts': posts_publicados_no_passado()
     })
 
+def posts_futuros(request):
+    return render_to_response('index.html',{
+        'categories': Category.objects.all(),
+        'posts': posts_publicados_no_futuro()
+    })
+
 def view_post(request, slug):   
     return render_to_response('view_post.html', {
         'post': get_object_or_404(Blog, slug=slug)
@@ -27,4 +33,8 @@ def posts_publicados_no_passado():
     for post in Blog.objects.all():
         if (post.get_data_publicacao() <= datetime.datetime.now().date()):
             posts.append(post)
+    return posts
+
+def posts_publicados_no_futuro():
+    posts = []
     return posts

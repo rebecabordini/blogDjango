@@ -20,6 +20,15 @@ class ValidacoesPost(unittest.TestCase):
 		# self.assertEqual(views.posts_publicados_no_passado()[0], Blog.objects.filter(title='BlogTestSucesso')[0])
 		self.assertIn(Blog.objects.get(title='BlogTestSucesso'), views.posts_publicados_no_passado())
 
+	def testApenasPostsNoFuturoSaoExibidos(self):
+		self.assertIn(Blog.objects.get(title='BlogTestFalha'), views.posts_publicados_no_futuro())
+		#TODO: criar uma rota para apontar apenas para os posts que ainda serao publicados com testes e tudo mais 
+
+	def suite():
+		suite = unittest.TestSuite()
+		suite.addTest(ValidacoesPost('testApenasPostsNoPassadoSaoExibidos'))
+		suite.addTest(ValidacoesPost('testApenasPostsNoFuturoSaoExibidos'))
+		return suite
 
 if __name__ == '__main__':
     unittest.main()
