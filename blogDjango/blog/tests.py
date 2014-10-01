@@ -15,9 +15,11 @@ class ValidacoesPost(unittest.TestCase):
 		Blog.objects.create(title='BlogTestFalha',slug='blogtestefalha',body='Teste',posted=dataFutura,category=categoria)
 
 	def testApenasPostsNoPassadoSaoExibidos(self):
-		posts = []
-		posts.append(Blog.objects.get(title='BlogTestSucesso'))
-		self.assertEqual(views.posts_publicados_no_passado(), posts)
+		# posts = []
+		# posts.append(Blog.objects.get(title='BlogTestSucesso'))
+		# self.assertEqual(views.posts_publicados_no_passado()[0], Blog.objects.filter(title='BlogTestSucesso')[0])
+		self.assertIn(Blog.objects.get(title='BlogTestSucesso'), views.posts_publicados_no_passado())
+
 
 if __name__ == '__main__':
     unittest.main()
