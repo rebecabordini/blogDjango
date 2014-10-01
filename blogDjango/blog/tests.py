@@ -15,7 +15,9 @@ class ValidacoesPost(unittest.TestCase):
 		Blog.objects.create(title='BlogTestFalha',slug='blogtestefalha',body='Teste',posted=dataFutura,category=categoria)
 
 	def testApenasPostsNoPassadoSaoExibidos(self):
-		self.assertEqual(views.posts_publicados_no_passado(), [])
+		posts = []
+		posts.append(Blog.objects.get(title='BlogTestSucesso'))
+		self.assertEqual(views.posts_publicados_no_passado(), posts)
 
 if __name__ == '__main__':
     unittest.main()
