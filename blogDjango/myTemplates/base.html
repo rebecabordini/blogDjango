@@ -1,5 +1,7 @@
 <html>
     <head>
+    	{% load staticfiles %}
+		<link rel="stylesheet" type="text/css" href="{% static 'blog/bootstrap.css' %}" />
         <title>{% block head_title %}Welcome to my blog{% endblock %}</title>
     </head>
     <body>
