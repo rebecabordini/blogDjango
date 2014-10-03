@@ -1,19 +1,18 @@
 from blog.models import Blog, Category
 from django.shortcuts import render_to_response, get_object_or_404
-from django.utils import timezone
-import datetime
 
 
 def index(request):
     return render_to_response('index.html', {
         'categories': Category.objects.all(),
-        'posts': posts_publicados_no_passado()
+        'posts': Blog().posts_publicados_no_passado()
     })
 
 def posts_futuros(request):
+    import ipdb; ipdb.set_trace()
     return render_to_response('index.html',{
         'categories': Category.objects.all(),
-        'posts': posts_publicados_no_futuro()
+        'posts': Blog().posts_publicados_no_futuro()
     })
 
 def view_post(request, slug):   
@@ -27,17 +26,3 @@ def view_category(request, slug):
         'category': category,
         'posts': Blog.objects.filter(category=category)[:5]
     })
-
-def posts_publicados_no_passado():
-    posts = []
-    for post in Blog.objects.all():
-        if (post.get_data_publicacao() <= datetime.datetime.now().date()):
-            posts.append(post)
-    return posts
-
-def posts_publicados_no_futuro():
-    posts = []
-    for post in Blog.objects.all():
-        if (post.get_data_publicacao() > datetime.datetime.now().date()):
-            posts.append(post)
-    return posts
