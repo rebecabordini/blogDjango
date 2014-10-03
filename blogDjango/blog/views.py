@@ -9,7 +9,6 @@ def index(request):
     })
 
 def posts_futuros(request):
-    import ipdb; ipdb.set_trace()
     return render_to_response('index.html',{
         'categories': Category.objects.all(),
         'posts': Blog().posts_publicados_no_futuro()
