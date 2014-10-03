@@ -21,18 +21,11 @@ class Blog(models.Model):
         return ('view_blog_post', None, { 'slug': self.slug })
 
     def posts_publicados_no_passado(self):
-        posts = []
-        for post in Blog.objects.all():
-            if (post.get_data_publicacao() <= datetime.datetime.now().date()):
-                posts.append(post)
-        return posts
+        return Blog.objects.filter(posted__lte=datetime.datetime.now().date())
 
     def posts_publicados_no_futuro(self):
-        posts = []
-        for post in Blog.objects.all():
-            if (post.get_data_publicacao() > datetime.datetime.now().date()):
-                posts.append(post)
-        return posts
+        return Blog.objects.filter(posted__gt=datetime.datetime.now().date())
+
 
 class Category(models.Model):
     title = models.CharField(max_length=100, db_index=True)
