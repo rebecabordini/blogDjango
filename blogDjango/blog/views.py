@@ -5,13 +5,13 @@ from django.shortcuts import render_to_response, get_object_or_404
 def index(request):
     return render_to_response('index.html', {
         'categories': Category.objects.all(),
-        'posts': Blog().posts_publicados_no_passado()
+        'posts': Blog.objects.posts_publicados_no_passado()
     })
 
 def posts_futuros(request):
     return render_to_response('index.html',{
         'categories': Category.objects.all(),
-        'posts': Blog().posts_publicados_no_futuro()
+        'posts': Blog.objects.posts_publicados_no_futuro()
     })
 
 def view_post(request, slug):   

@@ -26,10 +26,10 @@ class ValidacoesPost(unittest.TestCase):
 		cls.post_futuro = Blog.objects.create(title='BlogTestFalha',slug='blogtestefalha',posted=dataFutura, **kwargs)
 
 	def testApenasPostsNoPassadoSaoExibidos(self):
-		self.assertIn(self.post_atual, Blog().posts_publicados_no_passado())
+		self.assertIn(self.post_atual, Blog.objects.posts_publicados_no_passado())
 
 	def testApenasPostsNoFuturoSaoExibidos(self):
-		self.assertIn(self.post_futuro, Blog().posts_publicados_no_futuro())
+		self.assertIn(self.post_futuro, Blog.objects.posts_publicados_no_futuro())
 
 
 if __name__ == '__main__':
