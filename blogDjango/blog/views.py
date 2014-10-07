@@ -3,6 +3,7 @@ from django.shortcuts import render_to_response, get_object_or_404
 
 
 def index(request):
+    nome = 'qualquer_nome'
     return render_to_response('index.html', {
         'categories': Category.objects.all(),
         'posts': Blog.objects.posts_publicados_no_passado()

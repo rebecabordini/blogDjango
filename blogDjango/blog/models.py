@@ -6,10 +6,10 @@ import datetime
 
 class BlogManager(models.Manager):
     def posts_publicados_no_passado(self):
-        return Blog.objects.filter(posted__lte=datetime.datetime.now())
+        return self.filter(posted__lte=datetime.datetime.now())
 
     def posts_publicados_no_futuro(self):
-        return Blog.objects.filter(posted__gt=datetime.datetime.now())
+        return self.filter(posted__gt=datetime.datetime.now())
 
 
 class Blog(models.Model):
